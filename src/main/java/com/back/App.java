@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
+	Scanner sc = new Scanner(System.in);
 	void run () {
 		System.out.println("== 명언 앱 ==");
-
-		Scanner sc = new Scanner(System.in);
 
 		int count = 1;
 
@@ -18,6 +17,7 @@ public class App {
 			String input = sc.nextLine();
 			if (input.equals("등록")) {
 				register(wiseSayings, count);
+				count++;
 			} else if (input.equals("목록")) {
 				showList(wiseSayings);
 			} else if (input.equals("종료")) {
@@ -34,15 +34,25 @@ public class App {
 		System.out.println(count + "번 명언이 등록되었습니다.");
 		WiseSaying newOne = new WiseSaying(count, input_auther, input_line);
 		wiseSayings.add(newOne);
-		count++;
 	}
 
 	void showList(ArrayList<WiseSaying> wiseSayings) {
 		System.out.println("번호 / 작가 / 명언");
 		System.out.println("----------------------");
-		for (int i = wiseSayings.size() - 1; i >= 0; i--) {
-			WiseSaying auther = wiseSayings.get(i);
-			System.out.println(auther.num + " / " + auther.user + " / " + auther.comment);
+		WiseSaying[] forListWideSayings = findForList(wiseSayings);
+		for (WiseSaying wiseSaying :forListWideSayings) {
+			System.out.println(wiseSaying.num + " / " + wiseSaying.user + " / " + wiseSaying.comment);
 		}
+	}
+
+	WiseSaying[] findForList(ArrayList<WiseSaying> wiseSayings) {
+		WiseSaying[] newArr = new WiseSaying[wiseSayings.size()];
+		int index = 0;
+
+		for (int i = wiseSayings.size() - 1; i >= 0; i--) {
+			newArr[index] = wiseSayings.get(i);
+			index++;
+		}
+		return newArr;
 	}
 }
