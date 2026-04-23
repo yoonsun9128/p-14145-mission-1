@@ -20,6 +20,10 @@ public class App {
 				count++;
 			} else if (input.equals("목록")) {
 				showList(wiseSayings);
+			} else if (input.startsWith("삭제")) {
+				String[] parts = input.split("=");
+				int id = Integer.parseInt(parts[1]);
+				wiseSayings = deleteSaying(id, wiseSayings);
 			} else if (input.equals("종료")) {
 				break;
 			}
@@ -54,5 +58,24 @@ public class App {
 			index++;
 		}
 		return newArr;
+	}
+
+	ArrayList<WiseSaying> deleteSaying(int id, ArrayList<WiseSaying> wiseSayings) {
+
+		ArrayList<WiseSaying> setArr = new ArrayList<>();
+		boolean existId = false;
+		for (int i=0; i < wiseSayings.size(); i++) {
+			WiseSaying saying = wiseSayings.get(i);
+			if (saying.num != id) {
+				setArr.add(saying);
+			} else {
+				existId = true;
+			}
+		}
+		if (!existId) {
+			System.out.println(id + "번 명언은 존재하지 않습니다.");
+		}
+
+		return setArr;
 	}
 }
