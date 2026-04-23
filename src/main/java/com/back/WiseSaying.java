@@ -1,11 +1,11 @@
 package com.back;
 
-public class Auther {
+public class WiseSaying {
 	int num;
 	String user;
 	String comment;
 
-	public Auther(int num, String user, String comment) {
+	public WiseSaying(int num, String user, String comment) {
 		this.num = num;
 		this.user = user;
 		this.comment = comment;
