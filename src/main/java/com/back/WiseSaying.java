@@ -11,5 +11,10 @@ public class WiseSaying {
 		this.comment = comment;
 	}
 
+	void upDate(String user, String comment) {
+		this.user = user;
+		this.comment = comment;
+	}
+
 	//1단계 - 8단계 구현!
 }

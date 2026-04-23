@@ -24,6 +24,11 @@ public class App {
 				String[] parts = input.split("=");
 				int id = Integer.parseInt(parts[1]);
 				wiseSayings = deleteSaying(id, wiseSayings);
+			} else if (input.startsWith("수정")) {
+				String[] parts = input.split("=");
+				int id = Integer.parseInt(parts[1]);
+//				wiseSayings = editSaying(id, wiseSayings);
+				editSaying(id, wiseSayings);
 			} else if (input.equals("종료")) {
 				break;
 			}
@@ -77,5 +82,27 @@ public class App {
 		}
 
 		return setArr;
+	}
+
+	void editSaying(int id, ArrayList<WiseSaying> wiseSayings) {
+		boolean existId = false;
+		for (int i=0; i < wiseSayings.size(); i++) {
+			WiseSaying saying = wiseSayings.get(i);
+			if (saying.num == id) {
+				System.out.println("명언(기존) : " +saying.comment);
+				System.out.print("명언) ");
+				String input_line = sc.nextLine();
+				System.out.println("작가(기존) : " +saying.user);
+				System.out.print("작가) ");
+				String input_auther = sc.nextLine();
+				saying.upDate(input_auther, input_line);
+				existId = true;
+			} else {
+
+			}
+		}
+		if (!existId) {
+			System.out.println(id + "번 명언은 존재하지 않습니다.");
+		}
 	}
 }
